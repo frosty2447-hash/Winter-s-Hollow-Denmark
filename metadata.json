@@ -1,0 +1,6 @@
+{
+  "name": "Winter's Hollow Denmark",
+  "description": "Atmosphere-driven restaurant, dining, and cocktail bar in Denmark, Western Australia. Premium local menus, private events, and table bookings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
