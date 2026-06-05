@@ -1,336 +1,210 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import React, { useState } from 'react';
-import { Calendar, Compass, ArrowRight, ShieldCheck, GlassWater, Trophy, Heart, Award, ArrowRightCircle, Instagram, Facebook } from 'lucide-react';
+import React from 'react';
+import { motion } from 'motion/react';
 import { 
-  VENUE_INTERIOR, 
-  SIGNATURE_COCKTAIL, 
-  GOURMET_DISH, 
-  DRINKS_MENU, 
-  FOOD_MENU, 
+  HERO_ATMOSPHERE, 
+  SIGNATURE_COCKTAIL_OLD, 
+  GOURMET_DISH_OLD, 
+  COZY_HOLLOW, 
   REVIEWS_DATA 
 } from '../data';
+import { Flame, Star, Compass, ArrowRight, ShieldAlert, Sparkles, MapPin } from 'lucide-react';
 
 interface HomeViewProps {
   onNavigate: (view: string) => void;
 }
 
 export default function HomeView({ onNavigate }: HomeViewProps) {
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-
-  const signatureCocktails = DRINKS_MENU.filter(d => d.signature).slice(0, 3);
-  const featuredFoods = FOOD_MENU.filter(f => f.featured).slice(0, 3);
-
-  // Simulated live Instagram posts with actual Denmark WA tags and styled visual blocks
-  const instagramMockPosts = [
+  const cornerstones = [
     {
-      id: 'i1',
-      likes: '482',
-      comments: '34',
-      tag: '#WinterIsComing',
-      img: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=405',
+      title: "The Fire Pit Kitchen",
+      subtitle: "AUSTRAL-NORDIC DINING",
+      desc: "Slow combustion, raw flames, local Karri wood. Our custom embers pit handles hand-harvested Great Southern meats, salt-baked root cellars, and coastal brine.",
+      image: GOURMET_DISH_OLD,
+      cta: "The Culinary Menu",
+      target: "menu"
     },
     {
-      id: 'i2',
-      likes: '351',
-      comments: '21',
-      tag: '#OystersAndWine',
-      img: 'https://images.unsplash.com/photo-1534080391025-497c0302c3e6?auto=format&fit=crop&q=80&w=405',
+      title: "The Libation Ritual",
+      subtitle: "FINE COCKTAILS",
+      desc: "Experience 'The Hollow's Breath' and the stunning 'Blue Hollow Sour' from our visual series. Custom-smoked or velvety-shaken for long, moody nights in Western Australia.",
+      image: SIGNATURE_COCKTAIL_OLD,
+      cta: "Explore Cocktails",
+      target: "cocktails"
     },
     {
-      id: 'i3',
-      likes: '512',
-      comments: '41',
-      tag: '#WintersHollowDen',
-      img: VENUE_INTERIOR,
-    },
-    {
-      id: 'i4',
-      likes: '394',
-      comments: '18',
-      tag: '#WAFoodies',
-      img: GOURMET_DISH,
-    },
+      title: "Cozy Fireside Sanctum",
+      subtitle: "THE ATMOSPHERE",
+      desc: "Plush leather booths, heavy dark-blue knit blankets, flickering beeswax candles, and double-glazed windows framing ancient towering blue-gum forest twilights.",
+      image: COZY_HOLLOW,
+      cta: "About the Sanctuary",
+      target: "about"
+    }
   ];
 
   return (
-    <div id="homepage-root-section" className="relative text-neutral-200">
+    <div className="relative font-sans text-slate-200">
       
-      {/* Dynamic Cinematic Hero Section */}
-      <section id="homepage-hero-banner" className="relative h-screen flex items-center justify-center overflow-hidden">
-        
-        {/* Background Image/Video Fallback Stack */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-neutral-950/80 z-10" />
+      {/* 1. HERO SECTION */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden" id="hero-section">
+        {/* Cinematic Backdrop layers */}
+        <div className="absolute inset-0 bg-navy-deep">
+          <img
+            src={HERO_ATMOSPHERE}
+            alt="Winter's Hollow Interior Atmosphere"
+            className="w-full h-full object-cover opacity-35 scale-105 filter blur-[0.5px]"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-transparent to-navy-deep/80" />
+          <div className="absolute inset-0 bg-black/10 backdrop-brightness-[0.95]" />
+        </div>
+
+        {/* Ambient candle flame glow filter */}
+        <div className="absolute bottom-[20%] left-[10%] w-96 h-96 bg-amber-candle/10 rounded-full blur-[100px] pointer-events-none" />
+
+        {/* Core Content */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
           
-          {/* Autoplay Ambient Low-light Video with Background Image Fallback */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover scale-[1.05] filter brightness-[0.55] saturate-[0.8]"
-            poster={VENUE_INTERIOR}
+          {/* DEVELOPMENT STATUS WARNING BANNER */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, type: 'spring' }}
+            className="mb-8 p-4 bg-yellow-400/5 border border-yellow-500/40 rounded-sm max-w-2xl mx-auto backdrop-blur-md relative"
           >
-            {/* Dark moody aesthetic food & drink liquid motion, or soft firelight loops */}
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-pouring-red-wine-into-a-glass-close-up-11883-large.mp4" type="video/mp4" />
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-whisky-poured-into-a-glass-with-ice-42442-large.mp4" type="video/mp4" />
-          </video>
-        </div>
-
-        {/* Content Overlays */}
-        <div className="relative z-20 max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8 mt-12 animate-fade-in">
-          <span className="text-amber-500 font-serif text-sm uppercase tracking-[0.4em] mb-4 inline-block font-light">
-            Denmark, Western Australia
-          </span>
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif text-white tracking-[0.1em] font-extralight uppercase leading-tight mb-2">
-            WINTER'S HOLLOW
-          </h1>
-          <p className="text-xs sm:text-sm md:text-base text-slate-400 font-serif italic tracking-[0.2em] font-light max-w-2xl mx-auto mb-12">
-            Intimate Sanctuary • Wood-fired Plates • Smoky Infusions
-          </p>
-
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-5 max-w-md mx-auto">
-            <button
-              id="hero-book-now-cta"
-              onClick={() => onNavigate('bookings')}
-              className="w-full sm:w-auto bg-amber-500 text-[#050B18] px-10 py-4 text-xs uppercase font-bold tracking-widest flex items-center justify-center gap-3 transition-colors duration-300 hover:bg-amber-600 shadow-xl cursor-pointer"
-            >
-              <Calendar className="h-4 w-4" />
-              <span>Make a Reservation</span>
-            </button>
-            <button
-              id="hero-view-menus-cta"
-              onClick={() => onNavigate('menu')}
-              className="w-full sm:w-auto bg-transparent border border-white/20 px-10 py-4 text-xs uppercase font-bold tracking-widest text-white hover:bg-white/5 transition-colors cursor-pointer"
-            >
-              <Compass className="h-4 w-4 text-amber-500" />
-              <span>View Food Menu</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Scroll down mouse indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden sm:flex flex-col items-center space-y-1.5 opacity-60">
-          <span className="text-[10px] uppercase font-mono tracking-widest text-neutral-400">Discover</span>
-          <div className="w-5 h-8 border border-neutral-500 rounded-full flex justify-center p-1">
-            <div className="w-1 h-2 bg-amber-400 rounded-full animate-bounce" />
-          </div>
-        </div>
-      </section>
-
-      {/* Atmospheric Introduction (Bento Grid Style) */}
-      <section id="homepage-atmosphere-intro" className="py-24 bg-neutral-950 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Text description container */}
-            <div className="lg:col-span-5 space-y-6">
-              <span className="text-xs font-semibold text-amber-500 tracking-[0.2em] uppercase font-mono block">
-                The Physical Venue
+            <div className="border border-dashed border-yellow-500/20 p-2 text-center">
+              <span className="font-mono text-xs sm:text-sm tracking-[0.2em] text-[#fef3c7] font-bold uppercase block mb-1">
+                ⚠️ WEBSITE IS IN DEVELOPMENT ⚠️
               </span>
-              <h2 className="text-4xl md:text-5xl text-white font-serif tracking-tight font-light leading-tight italic">
-                An Intimate <span className="text-amber-500 not-italic">Sanctuary</span>
-              </h2>
-              <div className="border-l-2 border-amber-500 pl-6 space-y-4">
-                <p className="text-sm text-slate-400 font-light leading-relaxed">
-                  Step inside Winter's Hollow and leave the world behind. Designed as an atmosphere-driven dining hideaway, the space wraps you in rich navy-blue wall plaster, matte-black wood furniture sets, and soft golden fixtures that glow like embers against the Western Australian night.
-                </p>
-                <p className="text-sm text-slate-400 font-light leading-relaxed">
-                  Whether celebrating milestones or sharing a warm, spontaneous evening by the coast, every element of our table pairing, acoustics, and seasonal culinary vision has been curated with absolute precision.
-                </p>
-              </div>
-
-              {/* Distinguishing badges */}
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-blue-950/40">
-                <div className="flex items-start space-x-2.5">
-                  <div className="p-2 bg-blue-950/20 text-amber-400 border border-blue-950/30 rounded-full shrink-0">
-                    <Trophy className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs text-white font-semibold">Premium Craft</h4>
-                    <p className="text-[10px] text-neutral-500">Fine local ingredients</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-2.5">
-                  <div className="p-2 bg-blue-950/20 text-amber-400 border border-blue-950/30 rounded-full shrink-0">
-                    <GlassWater className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs text-white font-semibold">Artisan Sips</h4>
-                    <p className="text-[10px] text-neutral-500">Bespoke smoky infusions</p>
-                  </div>
-                </div>
-              </div>
+              <span className="font-mono text-[10px] sm:text-xs text-[#fef3c7]/85 uppercase tracking-widest font-semibold block">
+                DO NOT MAKE BOOKINGS — WE ARE NOT OPEN YET!
+              </span>
             </div>
+          </motion.div>
 
-            {/* Visual bento gallery */}
-            <div className="lg:col-span-7 grid grid-cols-12 gap-4">
-              <div className="col-span-12 pointer-events-none rounded-sm overflow-hidden border border-blue-950/40 shadow-2xl relative group max-h-[350px]">
-                <img
-                  src={VENUE_INTERIOR}
-                  alt="Winters Hollow Denmark Intimate Dining Interior"
-                  className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-neutral-950/20" />
-                <div className="absolute bottom-4 left-4 z-10">
-                  <span className="text-[9px] uppercase tracking-widest font-mono text-amber-400 bg-neutral-950/80 px-2.5 py-1 rounded-sm border border-blue-900/40">
-                    Main Dining Lounge
-                  </span>
-                </div>
-              </div>
-            </div>
+          {/* Sub Location Ribbon */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-navy-light/20 backdrop-blur-md rounded-full border border-white/10 mb-8"
+          >
+            <Flame className="w-3.5 h-3.5 text-amber-candle animate-pulse" />
+            <span className="font-mono text-[9px] tracking-[0.25em] text-slate-300 uppercase">
+              A Hidden Sanctuary • Denmark WA
+            </span>
+          </motion.div>
 
-          </div>
-        </div>
-      </section>
+          {/* Title Branding Display */}
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="font-display text-4xl sm:text-6xl md:text-[66px] font-extrabold tracking-[0.16em] text-[#f8fafc] uppercase leading-[1.15] mb-10"
+          >
+            WHERE THE WILD <br />
+            <span className="text-[#C5A059]">COLD</span> DRIFTS, <br />
+            THE HOLLOW BURNS <br />
+            WARM.
+          </motion.h1>
 
-      {/* Featured Mixology Showpiece */}
-      <section id="homepage-cocktails-spotlight" className="py-24 bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 relative border-t border-blue-950/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs uppercase text-amber-500 font-mono tracking-widest">Liquid Poetry</span>
-            <h2 className="text-3xl md:text-4xl text-white tracking-tight mt-2">
-              The Alchemy of our Signature Pour
-            </h2>
-            <p className="text-xs text-neutral-400 mt-3">
-              We take mixology seriously. Inspired by the dense Karri trees and mist of the Great Southern, our cocktail list relies on native forest extracts, house-burned smoke infusions, and local boutique whiskeys.
-            </p>
-          </div>
+          {/* Slogan */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.6 }}
+            className="font-serif-sub text-base sm:text-lg text-slate-300 italic max-w-2xl mx-auto mb-12 leading-relaxed"
+          >
+            “Cold outside. Alive inside. Slip away from the howling winds into Denmark’s premier candlelit culinary escape.”
+          </motion.p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {signatureCocktails.map((cocktail) => (
-              <div
-                key={cocktail.id}
-                className="bg-neutral-950/60 rounded-sm overflow-hidden border border-blue-950/25 flex flex-col hover:border-amber-500/20 transition-all duration-300 hover:translate-y-[-4px] group"
-              >
-                {cocktail.photo ? (
-                  <div className="h-56 overflow-hidden pointer-events-none relative">
-                    <img
-                      src={cocktail.photo}
-                      alt={cocktail.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 to-transparent" />
-                  </div>
-                ) : (
-                  <div className="h-56 bg-gradient-to-br from-blue-950/15 to-neutral-900 flex items-center justify-center p-6 border-b border-blue-950/20">
-                    <GlassWater className="h-10 w-10 text-amber-500/40" />
-                  </div>
-                )}
-                
-                <div className="p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <div className="flex justify-between items-baseline mb-2 border-b border-white/5 pb-2">
-                      <h3 className="text-xl font-serif italic text-white group-hover:text-amber-500 transition-colors">
-                        {cocktail.name}
-                      </h3>
-                      <span className="text-sm font-mono text-amber-500">${cocktail.price}</span>
-                    </div>
-                    <p className="text-xs text-slate-400 font-light mb-4 leading-relaxed">{cocktail.description}</p>
-                    {cocktail.notes && (
-                      <p className="text-[11px] italic text-blue-300 bg-blue-950/20 px-3 py-2 rounded-sm border border-blue-900/20 font-mono">
-                        {cocktail.notes}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
+          {/* Buttons Navigation CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto"
+          >
+            <button
+              onClick={() => onNavigate('bookings')}
+              className="w-full sm:w-auto px-8 py-3.5 bg-[#fef3c7] hover:bg-[#fff9e6] text-navy-deep font-mono text-xs font-bold tracking-[0.25em] uppercase rounded-sm transition-all shadow-md cursor-pointer"
+            >
+              Enter the Hollow
+            </button>
             <button
               onClick={() => onNavigate('menu')}
-              className="inline-flex items-center space-x-2 text-xs uppercase tracking-widest text-amber-400 hover:text-white transition-colors group"
+              className="w-full sm:w-auto px-8 py-3.5 bg-transparent border border-white/20 hover:border-white/50 text-slate-100 font-mono text-xs font-bold tracking-[0.25em] uppercase rounded-sm transition-all cursor-pointer"
             >
-              <span>Explore Complete Cocktail Menu</span>
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
+              Examine Menus
             </button>
-          </div>
+          </motion.div>
+
+        </div>
+
+        {/* Descending scroll pointer */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-1 z-10 pointer-events-none">
+          <span className="font-mono text-[9px] text-slate-500 tracking-[0.3em] uppercase">Scroll to descend</span>
+          <div className="w-1 h-12 bg-gradient-to-b from-amber-candle/80 to-transparent rounded-full animate-bounce" />
         </div>
       </section>
 
-      {/* Featured Kitchen Plates */}
-      <section id="homepage-cuisine-spotlight" className="py-24 bg-neutral-950 relative">
+      {/* 2. THE ATMOSPHERIC LAW & RESERVATION PREVIEW */}
+      <section className="py-24 bg-navy-dark relative border-b border-navy-light/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Seared Trout or Gourmet Plating main card */}
-            <div className="lg:col-span-7 order-2 lg:order-1">
-              <div className="relative rounded-sm overflow-hidden border border-blue-950/40 shadow-2xl">
-                <img
-                  src={GOURMET_DISH}
-                  alt="Gourmet Dining Plating at Winters Hollow Denmark"
-                  className="w-full object-cover max-h-[460px]"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="flex items-center space-x-2 mb-1">
-                    <Award className="h-4 w-4 text-amber-400" />
-                    <span className="text-[10px] font-mono tracking-widest text-amber-400 uppercase font-semibold">
-                      Head Chef Recommendation
-                    </span>
-                  </div>
-                  <h3 className="text-xl md:text-2xl text-white font-serif italic border-b border-white/10 pb-2 mb-2">
-                    Seared Southern Ocean Trout
-                  </h3>
-                  <p className="text-xs text-slate-300 mt-1.5 max-w-lg mb-3 leading-relaxed font-light">
-                    Delivered fresh from local Southern waters, seared perfectly on saltbush bed and completed with a wild Great Southern local finger lemon emulsion.
-                  </p>
-                  <span className="text-xs font-mono text-white bg-amber-500/15 border border-amber-500/30 px-3 py-1 rounded-sm">
-                    $46 • Allergen Safe: Gluten Free
-                  </span>
+            {/* Descriptive brand column */}
+            <div className="lg:col-span-7 space-y-8">
+              <span className="font-mono text-xs tracking-[0.25em] text-gold-matte uppercase block">
+                The Atmospheric Experience
+              </span>
+              <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-widest text-slate-100 uppercase leading-snug">
+                WE SELL ATMOSPHERE,<br />WHISKEY & RAW WOOD FIRE.
+              </h2>
+              <p className="font-serif-sub text-lg sm:text-xl text-slate-350 italic leading-relaxed">
+                "Winter’s Hollow was born from the ancient towering karri trees and cold southerly gusts of Denmark, WA. We designed this chamber as a physical refuge—heavy thick timbers, velvet curtained shadows, amber candles, and slow-melting smoke that captures the intense romance of the dark months."
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-6 sm:items-center text-slate-400 font-mono text-xs">
+                <div className="flex items-center space-x-2">
+                  <MapPin className="w-4 h-4 text-gold-matte flex-shrink-0" />
+                  <span>35 Holling Road, Denmark WA (WA Great Southern Coast)</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Flame className="w-4 h-4 text-amber-candle" />
+                  <span>Limited: 42 Seats Nightly</span>
                 </div>
               </div>
             </div>
 
-            {/* Cuisine details and highlights listing */}
-            <div className="lg:col-span-5 order-1 lg:order-2 space-y-6">
-              <span className="text-xs uppercase text-amber-500 font-mono tracking-widest block">Culinary Roots</span>
-              <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight italic">
-                Denmark's Bounty on <span className="text-amber-500 not-italic">Your Plate</span>
-              </h2>
-              <p className="text-xs text-slate-400 font-light leading-relaxed">
-                Our kitchen marries the rich cool-climate harvests of Denmark, Western Australia with modern, wood-fire touched culinary techniques. We source lamb from Albany valleys, pristine oysters, and hand-foraged native forest saltbush.
-              </p>
+            {/* NowBookIt Closed Status card */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative bg-navy-medium border border-navy-light/60 p-8 sm:p-10 rounded shadow-2xl overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-amber-glow/5 rounded-full blur-2xl group-hover:bg-amber-glow/10 transition-colors" />
+                
+                <h3 className="font-display text-xl text-slate-100 font-bold mb-4 tracking-wider">
+                  NOWBOOKIT RESERVED
+                </h3>
+                <p className="font-sans text-xs text-slate-300 leading-relaxed mb-6">
+                  Our intimate layout accommodates single tables, secluded dining alcoves, and bar counters. Standard bookings are routed through our premier local partner.
+                </p>
+                
+                <ul className="space-y-3 font-mono text-xs text-slate-400 mb-8">
+                  <li className="flex items-center space-x-2">
+                    <Sparkles className="w-4 h-4 text-gold-matte" />
+                    <span>Real-time Secure Confirmation</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <Flame className="w-4 h-4 text-amber-candle" />
+                    <span>Seating style preferences welcome</span>
+                  </li>
+                </ul>
 
-              <div className="space-y-4 pt-2">
-                {featuredFoods.slice(0, 2).map((food) => (
-                  <div 
-                    key={food.id}
-                    className="p-4 rounded-sm bg-neutral-900/40 border border-translucent hover:border-amber-500/10 transition-colors"
-                  >
-                    <div className="flex justify-between items-baseline mb-1 border-b border-white/5 pb-1">
-                      <h4 className="text-sm font-serif italic text-white">{food.name}</h4>
-                      <span className="text-sm font-mono text-amber-500">${food.price}</span>
-                    </div>
-                    <p className="text-xxs text-slate-400 font-light mt-1.5 leading-relaxed">{food.description}</p>
-                    <div className="flex gap-1.5 mt-2">
-                      {food.tags.map((tag) => (
-                        <span key={tag} className="text-[9px] font-mono border border-blue-950 bg-blue-950/10 px-1.5 text-blue-300">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="pt-2">
                 <button
-                  onClick={() => onNavigate('menu')}
-                  className="flex items-center space-x-2 text-xs uppercase tracking-widest text-[#F9C04D] hover:text-white transition-colors"
+                  onClick={() => onNavigate('bookings')}
+                  className="w-full py-3.5 bg-navy-dark/80 hover:bg-navy-light text-amber-candle border border-amber-candle/40 hover:border-amber-glow font-mono text-xs font-semibold tracking-widest uppercase transition-all rounded font-bold cursor-pointer"
                 >
-                  <Compass className="h-4 w-4" />
-                  <span>Browse Our Complete Dining Menu</span>
+                  Bookings Closed (Not Open Yet)
                 </button>
               </div>
             </div>
@@ -339,161 +213,141 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         </div>
       </section>
 
-      {/* Trust & Review Highlight Frame */}
-      <section id="homepage-reviews-highlight" className="py-20 bg-neutral-950 border-t border-b border-blue-950/30">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <span className="text-xs uppercase text-lime-500 font-mono tracking-wider font-semibold mb-2 inline-block">
-            Verified Dining Feedback
-          </span>
+      {/* 3. THE THREE CORNERSTONES */}
+      <section className="py-24 bg-navy-deep relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="relative py-4">
-            <p className="text-sm md:text-base text-white leading-relaxed font-sans tracking-wide italic px-8">
-              "{REVIEWS_DATA[activeTestimonial].text}"
-            </p>
-            <div className="mt-6 flex flex-col items-center justify-center space-y-1">
-              <span className="text-xs text-amber-400 font-sans tracking-widest uppercase font-semibold">
-                — {REVIEWS_DATA[activeTestimonial].author}
-              </span>
-              <span className="text-[10px] text-neutral-500 font-mono">
-                {REVIEWS_DATA[activeTestimonial].category} Experience • Source: {REVIEWS_DATA[activeTestimonial].source}
-              </span>
-            </div>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="font-mono text-xs tracking-[0.25em] text-gold-matte uppercase block mb-3 animate-pulse">
+              Descend into Details
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-widest text-[#f8fafc] uppercase">
+              THE THREE CORNERSTONES
+            </h2>
+            <div className="w-20 h-[1px] bg-gold-matte mx-auto mt-4" />
           </div>
 
-          <div className="flex justify-center space-x-2 mt-4">
-            {REVIEWS_DATA.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveTestimonial(idx)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
-                  idx === activeTestimonial ? 'bg-amber-400 w-6' : 'bg-neutral-700 hover:bg-neutral-500'
-                }`}
-                aria-label={`Go to review ${idx + 1}`}
-              />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            {cornerstones.map((stone, o) => (
+              <motion.div
+                key={o}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: o * 0.1 }}
+                className="bg-navy-dark/60 rounded border border-navy-light/40 hover:border-gold-matte/30 overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group flex flex-col justify-between"
+              >
+                <div className="h-64 relative overflow-hidden">
+                  <img
+                    src={stone.image}
+                    alt={stone.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-transparent to-transparent" />
+                </div>
+
+                <div className="p-8 flex-grow flex flex-col justify-between">
+                  <div>
+                    <span className="font-mono text-[10px] tracking-[0.25em] text-gold-matte uppercase block mb-2">
+                      {stone.subtitle}
+                    </span>
+                    <h3 className="font-display text-xl text-slate-100 font-bold mb-4 tracking-wider">
+                      {stone.title}
+                    </h3>
+                    <p className="font-sans text-sm text-slate-400 leading-relaxed mb-6 h-24 overflow-hidden">
+                      {stone.desc}
+                    </p>
+                  </div>
+                  
+                  <button
+                    onClick={() => onNavigate(stone.target)}
+                    className="flex items-center space-x-2 font-mono text-xs text-gold-light hover:text-gold-matte transition-colors group/btn cursor-pointer"
+                  >
+                    <span>{stone.cta}</span>
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </motion.div>
             ))}
           </div>
+
         </div>
       </section>
 
-      {/* Private Events Showcase & Functions Block */}
-      <section id="homepage-events-teaser" className="py-24 bg-neutral-900 border-b border-blue-950/15">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-sm bg-neutral-950 p-8 sm:p-12 lg:p-16 border border-blue-950/50 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-blue-900/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-amber-900/5 rounded-full blur-3xl pointer-events-none" />
-            
-            <div className="max-w-2xl space-y-4 relative z-10">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#F9C04D]">
-                Exclusivity & Celebrations
-              </span>
-              <h3 className="text-2xl sm:text-3xl text-white font-sans uppercase tracking-wider">
-                Reserving Winter's Hollow for Yourself
-              </h3>
-              <p className="text-xs text-neutral-400 leading-relaxed">
-                Planning a special milestone, corporate retreat, or micro-wedding in Western Australia? Offer your guests a candle-lit culinary takeover. Winter's Hollow Denmark is available for single night full-venue takeover hire with completely customized gastronomy menus, sound styling, and signature cocktail pairings.
-              </p>
-              <div className="flex flex-wrap gap-4 pt-2 text-[10px] tracking-wide font-mono uppercase text-neutral-400">
-                <span className="bg-blue-950/20 px-3 py-1 border border-blue-900/20 text-blue-300">
-                  Capacity: Up to 55 Seated
-                </span>
-                <span className="bg-blue-950/20 px-3 py-1 border border-blue-900/20 text-blue-300">
-                  Exclusive Bar Packages
-                </span>
-              </div>
-            </div>
+      {/* 4. SLOW DINING HEADING SECTION */}
+      <section className="py-28 relative overflow-hidden border-t border-b border-navy-light/40 bg-navy-dark">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(2,26,54,0.3)_0%,transparent_70%)]" />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+          <span className="font-mono text-xs tracking-[0.3em] text-gold-matte uppercase block mb-4">
+            A Great Southern Solstice
+          </span>
+          <h2 className="font-display text-2xl sm:text-4xl font-extrabold tracking-widest text-[#f8fafc] mb-6 uppercase">
+            WE DARE TO DO DINING SLOWLY.
+          </h2>
+          <p className="font-serif-sub text-base sm:text-lg text-slate-300 italic leading-relaxed max-w-2xl mx-auto mb-8">
+            “No rushed sittings. No generic noise. We dim the house lights, ignite the jarrah timbers, and prepare hand-smoked culinary stories. Denmark WA has never felt so intimate.”
+          </p>
+          <div className="inline-flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-400">
+            <span className="bg-navy-light/40 px-3 py-1.5 border border-navy-light/60 rounded">42 Seats Only</span>
+            <span className="bg-navy-light/40 px-3 py-1.5 border border-navy-light/60 rounded">Premium Mixology</span>
+            <span className="bg-navy-light/40 px-3 py-1.5 border border-navy-light/60 rounded">NowBookIt Partner</span>
+          </div>
+        </div>
+      </section>
 
-            <div className="shrink-0 relative z-10 w-full lg:w-auto">
+      {/* 5. GUEST FEEDBACK & VERDICT */}
+      <section className="py-24 bg-navy-deep relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Title column */}
+            <div className="lg:col-span-4 space-y-4">
+              <span className="font-mono text-xs tracking-[0.25em] text-gold-matte uppercase block">
+                Loved by Travelers & Locals
+              </span>
+              <h2 className="font-display text-2xl sm:text-3.5xl font-bold tracking-widest text-slate-100 uppercase">
+                THE HOLLOW VERDICT
+              </h2>
+              <p className="font-sans text-xs text-slate-400 leading-relaxed">
+                Read direct reviews from visiting date nights, Western Australian foodies, and international culinary travelers.
+              </p>
               <button
-                onClick={() => onNavigate('events')}
-                className="w-full lg:w-auto flex items-center justify-center space-x-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-neutral-950 text-xs uppercase tracking-widest font-semibold px-8 py-4 rounded-sm shadow-xl transition-all"
+                onClick={() => onNavigate('reviews')}
+                className="px-6 py-3 bg-navy-light border border-navy-light/80 text-gold-light hover:border-gold-matte hover:text-gold-matte text-xs font-mono tracking-widest uppercase transition-all rounded cursor-pointer"
               >
-                <span>Functions Packages & Calculator</span>
-                <ArrowRightCircle className="h-4 w-4" />
+                View Selected Reviews
               </button>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Styled Interactive Simulated Social & Instagram Feed */}
-      <section id="homepage-social-media" className="py-24 bg-neutral-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-12">
-            <span className="text-xs uppercase text-[#F9C04D] font-mono tracking-widest">Connect with Us</span>
-            <h2 className="text-2xl font-sans text-white tracking-tight mt-1">@wintershollowdenmark</h2>
-            <p className="text-xs text-neutral-500 mt-2">
-              Follow our journey, view seasonal kitchen behind-the-scenes, and learn about Western Australian organic vineyards.
-            </p>
-            <div className="mt-4 flex justify-center space-x-3">
-              <a
-                href="https://instagram.com/wintershollowdenmark"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center space-x-1.5 bg-neutral-900 hover:bg-neutral-800 text-white text-[11px] uppercase tracking-widest px-4 py-2 border border-blue-950/30 rounded-sm transition-colors"
-              >
-                <Instagram className="h-3.5 w-3.5 text-amber-500" />
-                <span>Follow on Instagram</span>
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center space-x-1.5 bg-neutral-900 hover:bg-neutral-800 text-white text-[11px] uppercase tracking-widest px-4 py-2 border border-blue-950/30 rounded-sm transition-colors"
-              >
-                <Facebook className="h-3.5 w-3.5 text-blue-400" />
-                <span>Follow on Facebook</span>
-              </a>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {instagramMockPosts.map((post) => (
-              <div
-                key={post.id}
-                className="relative rounded-sm overflow-hidden aspect-square border border-blue-950/30 group shadow-lg pointer-events-auto cursor-pointer"
-              >
-                <img
-                  src={post.img}
-                  alt="Simulated Instagram feed view"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
-                />
-                
-                {/* Overlay details */}
-                <div className="absolute inset-0 bg-neutral-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center space-y-2 text-center p-4">
-                  <span className="text-xs font-mono text-amber-400">{post.tag}</span>
-                  <div className="flex space-x-4 text-xs font-mono text-white pt-1">
-                    <span className="flex items-center space-x-1">
-                      <Heart className="h-3.5 w-3.5 text-red-500 fill-current" />
-                      <span>{post.likes}</span>
-                    </span>
-                    <span>
-                      💬 {post.comments}
+            {/* Quick reviews grid */}
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+              {REVIEWS_DATA.slice(0, 2).map((review) => (
+                <div
+                  key={review.id}
+                  className="bg-navy-dark border border-navy-light/40 p-8 rounded shadow-xl relative"
+                >
+                  <div className="flex items-center space-x-1 text-amber-candle mb-4">
+                    {[...Array(review.rating)].map((_, rIdx) => (
+                      <Star key={rIdx} className="w-4 h-4 text-amber-candle fill-current" />
+                    ))}
+                  </div>
+                  <p className="font-serif-sub text-base text-slate-300 italic leading-relaxed mb-6">
+                    "{review.text}"
+                  </p>
+                  <div>
+                    <h4 className="font-mono text-xs font-bold text-slate-200 uppercase tracking-wider">
+                      {review.author}
+                    </h4>
+                    <span className="font-mono text-[10px] text-slate-500">
+                      Source: {review.source} • {review.date}
                     </span>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              ))}
+            </div>
 
-      {/* Book A Table Quick CTA Banner */}
-      <section id="homepage-bottom-cta" className="py-20 bg-gradient-to-r from-blue-950/40 via-neutral-950 to-neutral-950 border-t border-blue-950/30 relative text-center">
-        <div className="max-w-2xl mx-auto px-4 z-10 relative">
-          <h2 className="text-2xl sm:text-3xl text-white font-sans uppercase tracking-widest mb-3">
-            Ready to Discover Winter's Hollow?
-          </h2>
-          <p className="text-xs text-neutral-400 mb-8 max-w-md mx-auto">
-            Bookings are strongly recommended, especially during weekend dinner services. Enjoy regional Western Australian gastronomy at its peak.
-          </p>
-          <button
-            onClick={() => onNavigate('bookings')}
-            className="inline-flex items-center space-x-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-neutral-950 text-xs uppercase tracking-widest font-semibold px-8 py-4 rounded-sm shadow-xl transition-all hover:scale-[1.03]"
-          >
-            <Calendar className="h-4 w-4" />
-            <span>Secure Your Secure Booking</span>
-          </button>
+          </div>
         </div>
       </section>
 

@@ -1,366 +1,256 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import React, { useState, useMemo } from 'react';
-import { FUNCTION_PACKAGES } from '../data';
-import { Calendar, Users, Mail, Phone, Calculator, Check, ArrowRight, HelpCircle, CheckCircle, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Calendar, Check, Users, FileText, Gift, Mail, Sparkles } from 'lucide-react';
 
 export default function EventsView() {
-  const [selectedPackage, setSelectedPackage] = useState(FUNCTION_PACKAGES[0].id);
-  const [guestsCount, setGuestsCount] = useState(30);
-  
-  // Interactive additions checkboxes
-  const [welcomeDrink, setWelcomeDrink] = useState(false);
-  const [oysterShucker, setOysterShucker] = useState(false);
-  const [mossDecoration, setMossDecoration] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    eventType: "Private Date & Celebration",
+    duration: "4 Hours",
+    guests: "20",
+    message: ""
+  });
 
-  // Inquiry form status
-  const [inquiryName, setInquiryName] = useState('');
-  const [inquiryEmail, setInquiryEmail] = useState('');
-  const [inquiryPhone, setInquiryPhone] = useState('');
-  const [inquiryDate, setInquiryDate] = useState('2026-11-20');
-  const [comments, setComments] = useState('');
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [submittingInquiry, setSubmittingInquiry] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  // Find active package details
-  const activePackageData = useMemo(() => {
-    return FUNCTION_PACKAGES.find(p => p.id === selectedPackage) || FUNCTION_PACKAGES[0];
-  }, [selectedPackage]);
+  const packages = [
+    {
+      title: "Intimate Fireside Takeovers",
+      capacity: "10 — 20 guests",
+      desc: "Complete privacy in our high-end cozy corners. Enjoy dedicated fireside cocktail craft and customized sharing wood-fired feast dishes perfectly timed.",
+      highlight: "Perfect for milestones & luxury date circles"
+    },
+    {
+      title: "The Solstice Hall Banquet",
+      capacity: "25 — 45 guests",
+      desc: "The entire mystical chamber is yours. Custom wax candlelight level settings, multi-course chef tastings, specific auditory playlists, and full sensory hospitality.",
+      highlight: "Elite celebrations, boutique weddings & corporate feasts"
+    },
+    {
+      title: "Exclusive Libation Crafting",
+      capacity: "8 — 15 guests",
+      desc: "A hands-on, high-end masterclass with our senior lead mixologists. Discover the secrets of smoking single malts, preparing salines, and clear-ice sculpturing.",
+      highlight: "Private cocktail lovers, birthdays & connoisseurs"
+    }
+  ];
 
-  // Estimate total live cost calculation
-  const calculatedOutput = useMemo(() => {
-    // Base estimation math
-    // Takeovers map to standard $105 per head minimum food banquet. Sovereign maps to $85 per head. Masterclass maps to $115 per head inclusive of drinks.
-    let costPerHead = 105;
-    if (selectedPackage === 'p2') costPerHead = 85; 
-    if (selectedPackage === 'p3') costPerHead = 115;
-
-    let baseFoodCost = guestsCount * costPerHead;
-    
-    // Addons
-    if (welcomeDrink) baseFoodCost += (guestsCount * 18); // $18/head cocktail
-    if (oysterShucker) baseFoodCost += (guestsCount * 22); // $22/head fresh shucked
-    if (mossDecoration) baseFoodCost += 120; // flat fee
-
-    const requiredMinSpend = activePackageData.minSpend;
-    const finalSpend = Math.max(baseFoodCost, requiredMinSpend);
-    const differenceToMin = Math.max(0, requiredMinSpend - baseFoodCost);
-
-    return {
-      actualFoodBevCost: baseFoodCost,
-      finalSpend: finalSpend,
-      requiresMinimumAdjustment: baseFoodCost < requiredMinSpend,
-      differenceToMin: differenceToMin,
-      headEstimation: Math.round(finalSpend / guestsCount)
-    };
-  }, [selectedPackage, guestsCount, welcomeDrink, oysterShucker, mossDecoration, activePackageData]);
-
-  const handleInquirySubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inquiryName.trim() || !inquiryEmail.trim() || !inquiryPhone.trim()) return;
-
-    setSubmittingInquiry(true);
-    
-    setTimeout(() => {
-      setSubmittingInquiry(false);
-      setFormSubmitted(true);
-    }, 1250);
+    setSubmitted(true);
   };
 
   return (
-    <div id="private-functions-root" className="min-h-screen bg-neutral-950 pt-28 pb-24 text-neutral-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-28 bg-navy-deep min-h-screen relative overflow-hidden" id="functions-view">
+      {/* Background Soft Blurs */}
+      <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-navy-light/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Private Events Headers */}
-        <div className="text-center max-w-2xl mx-auto mb-16 animate-fade-in">
-          <span className="text-xs uppercase text-amber-500 font-mono tracking-widest block mb-1">
-            Exclusivity & Celebrations
+        {/* Story Header */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="font-mono text-xs tracking-[0.25em] text-gold-matte uppercase block mb-3">
+            Sovereign Private Hire
           </span>
-          <h1 className="text-4xl md:text-6xl text-white font-serif font-light tracking-wide uppercase italic">
-            Private <span className="text-amber-500 not-italic">Gatherings</span>
+          <h1 className="font-display text-3xl sm:text-5xl font-extrabold tracking-widest text-slate-100 uppercase mb-4">
+            FUNCTIONS & PRIVATE GATHERINGS
           </h1>
-          <p className="text-xs text-neutral-400 mt-4 leading-relaxed">
-            Host your wedding banquet, corporate retreat, or private milestone inside our atmospheric candle-lit room. Secure the entire venue or reserve our semi-private sovereign booths.
+          <p className="font-serif-sub text-lg text-slate-350 italic">
+            "Host your next celebration inside a premium hidden sanctuary. Custom-tailored food menus, sensory cocktail rituals, and dedicated service guides."
           </p>
+          <div className="w-16 h-[1.5px] bg-gold-matte mx-auto mt-6" />
         </div>
 
-        {/* Packages Showcase cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20 animate-fade-in">
-          {FUNCTION_PACKAGES.map((pkg) => (
+        {/* Private Dining package Columns Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
+          {packages.map((pkg, i) => (
             <div
-              key={pkg.id}
-              onClick={() => setSelectedPackage(pkg.id)}
-              className={`bg-neutral-900 rounded-sm border p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer ${
-                selectedPackage === pkg.id
-                  ? 'border-amber-500 shadow-xl shadow-amber-950/10 bg-neutral-900/90 scale-[1.01]'
-                  : 'border-blue-950/40 hover:border-neutral-700 bg-neutral-900/50'
-              }`}
+              key={i}
+              className="bg-navy-dark border border-navy-light/40 p-8 rounded shadow-lg flex flex-col justify-between hover:border-gold-matte/30 transition-all group"
             >
-              <div>
-                <div className="flex justify-between items-start mb-4 border-b border-blue-950/30 pb-3">
-                  <h3 className="text-sm font-sans uppercase tracking-widest text-[#F9C04D] font-bold">
-                    {pkg.title}
-                  </h3>
-                  <span className="text-xxs font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 border border-amber-500/20 rounded-xs">
-                    Min Spend ${pkg.minSpend}
-                  </span>
-                </div>
-                
-                <p className="text-xxs text-neutral-400 mb-5 leading-relaxed">
-                  {pkg.description}
+              <div className="space-y-4">
+                <span className="font-mono text-[10px] text-gold-matte uppercase tracking-[0.2em] block">
+                  Capacity: {pkg.capacity}
+                </span>
+                <h3 className="font-display text-xl font-bold text-slate-100 group-hover:text-gold-light transition-colors tracking-wider uppercase">
+                  {pkg.title}
+                </h3>
+                <p className="font-sans text-xs text-slate-400 leading-relaxed">
+                  {pkg.desc}
                 </p>
-
-                <div className="space-y-2 mb-6">
-                  <span className="text-[9px] uppercase font-mono tracking-wider text-neutral-500 block">Package details includes:</span>
-                  {pkg.highlights.map((high, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xxs text-neutral-300">
-                      <Check className="h-3.5 w-3.5 text-amber-500 shrink-0 mt-0.5" />
-                      <span>{high}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
 
-              <div className="pt-4 border-t border-blue-950/20 flex justify-between items-center text-[10px] uppercase tracking-wider font-mono text-neutral-400">
-                <span>Hosts: {pkg.capacity}</span>
-                {selectedPackage === pkg.id && (
-                  <span className="text-amber-400 font-bold flex items-center gap-1">
-                    <Sparkles className="h-3 w-3" /> Selected Box
-                  </span>
-                )}
+              <div className="mt-8 pt-4 border-t border-navy-light/20">
+                <span className="font-serif-sub text-xs text-amber-candle/90 italic block">
+                  {pkg.highlight}
+                </span>
               </div>
             </div>
           ))}
         </div>
 
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-5xl mx-auto">
+        {/* Inquiry Layout Row split */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
           
-          {/* Dynamic Spend Cost Calculator */}
-          <div className="lg:col-span-6 bg-neutral-900 border border-blue-950/45 p-6 rounded-sm shadow-2xl relative space-y-6">
-            <h3 className="text-xs uppercase font-sans tracking-widest text-white border-b border-blue-950/20 pb-2 flex items-center gap-2">
-              <Calculator className="h-4 w-4 text-amber-500" />
-              <span>Dinner Party Cost Estimator</span>
-            </h3>
+          {/* L. Features Block Column */}
+          <div className="lg:col-span-5 bg-navy-dark border border-navy-light/50 rounded-lg p-8 sm:p-10 flex flex-col justify-between space-y-8 relative">
+            <div className="space-y-6">
+              <span className="font-mono text-xs text-gold-matte uppercase tracking-widest block">
+                Exclusive Amenities
+              </span>
+              <h2 className="font-display text-2xl font-bold text-slate-100 tracking-wider uppercase">
+                Bespoke Experiences
+              </h2>
+              <p className="font-sans text-xs sm:text-sm text-slate-400 leading-relaxed">
+                We believe that every function is a custom narrative. Rather than uniform buffet packages, we design specific tactile elements for your guests.
+              </p>
 
-            <div className="space-y-4 text-xs">
-              
-              {/* Event Package Select in Calculator */}
-              <div>
-                <label className="text-neutral-500 text-[9px] uppercase font-mono block mb-1">Select Event Space Package</label>
-                <select
-                  value={selectedPackage}
-                  onChange={(e) => setSelectedPackage(e.target.value)}
-                  className="w-full text-xs bg-neutral-950 border border-blue-950 p-2.5 rounded-xs text-white outline-none"
-                >
-                  <option value="p1">Exclusive Venue Takeover ($4500 min spend)</option>
-                  <option value="p2">The Sovereign Booths ($1500 min spend)</option>
-                  <option value="p3">Masterclass Cocktail Dinner ($2800 min spend)</option>
-                </select>
-              </div>
+              <ul className="space-y-4 font-mono text-[11px] uppercase tracking-wider text-slate-405">
+                <li className="flex items-center space-x-2">
+                  <FileText className="w-4 h-4 text-gold-matte flex-shrink-0" />
+                  <span>Custom menu printouts on organic textured papers</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <Users className="w-4 h-4 text-gold-matte flex-shrink-0" />
+                  <span>Personal host guide & senior mixologist assigned</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <Gift className="w-4 h-4 text-gold-matte flex-shrink-0" />
+                  <span>Sensory smoke pairing under crystal bell jars</span>
+                </li>
+              </ul>
+            </div>
 
-              {/* Attendance count adjuster */}
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <label className="text-neutral-500 text-[9px] uppercase font-mono block">Attending Guests count: <span className="text-amber-400 font-bold">{guestsCount}</span></label>
-                  <span className="text-[9px] text-neutral-550 font-mono">Capacity: {activePackageData.capacity}</span>
-                </div>
-                <input
-                  type="range"
-                  min="6"
-                  max="80"
-                  value={guestsCount}
-                  onChange={(e) => setGuestsCount(Number(e.target.value))}
-                  className="w-full accent-amber-500"
-                />
-              </div>
-
-              {/* Premium Addons Selector Checklist */}
-              <div className="space-y-3 bg-neutral-950 p-4 border border-blue-950/50 rounded-xs">
-                <span className="text-[9px] uppercase font-mono text-neutral-500 tracking-wider block">Boutique Add-ons</span>
-                
-                <label className="flex items-center justify-between cursor-pointer">
-                  <span className="text-xxs text-neutral-300 flex items-center gap-1.5">
-                    <input
-                      type="checkbox"
-                      checked={welcomeDrink}
-                      onChange={(e) => setWelcomeDrink(e.target.checked)}
-                      className="text-amber-500 rounded-sm"
-                    />
-                    <span>Native botanical cocktail welcome reception (+$18/head)</span>
-                  </span>
-                  <span className="text-[10px] font-mono text-neutral-500 font-semibold">+${guestsCount * 18}</span>
-                </label>
-
-                <label className="flex items-center justify-between cursor-pointer">
-                  <span className="text-xxs text-neutral-300 flex items-center gap-1.5">
-                    <input
-                      type="checkbox"
-                      checked={oysterShucker}
-                      onChange={(e) => setOysterShucker(e.target.checked)}
-                      className="text-amber-500 rounded-sm"
-                    />
-                    <span>Live Albany oyster shucking station (+$22/head)</span>
-                  </span>
-                  <span className="text-[10px] font-mono text-neutral-500 font-semibold">+${guestsCount * 22}</span>
-                </label>
-
-                <label className="flex items-center justify-between cursor-pointer">
-                  <span className="text-xxs text-neutral-300 flex items-center gap-1.5">
-                    <input
-                      type="checkbox"
-                      checked={mossDecoration}
-                      onChange={(e) => setMossDecoration(e.target.checked)}
-                      className="text-amber-500 rounded-sm"
-                    />
-                    <span>Curated forest moss & native flower placemats (Flat)</span>
-                  </span>
-                  <span className="text-[10px] font-mono text-neutral-500 font-semibold">+$120</span>
-                </label>
-              </div>
-
-              {/* Calculated Outputs result */}
-              <div className="bg-neutral-950 p-4 rounded-xs border border-blue-950/80 space-y-3 font-sans">
-                <div className="flex justify-between items-baseline">
-                  <span className="text-xxs uppercase tracking-wider text-neutral-400">Attending Food & Beverage Cost estimate:</span>
-                  <span className="text-xs font-mono font-bold text-white">${calculatedOutput.actualFoodBevCost}</span>
-                </div>
-
-                {calculatedOutput.requiresMinimumAdjustment && (
-                  <div className="bg-amber-500/10 border border-amber-500/20 p-2.5 rounded text-xxs leading-relaxed text-amber-400">
-                    Your selections sum up below the space minimum spend limit of <strong>${activePackageData.minSpend}</strong>. The venue minimum spend is applied as our core booking rate. Try adding guests or premium add-ons!
-                  </div>
-                )}
-
-                <div className="flex justify-between items-end border-t border-blue-950/40 pt-3">
-                  <div>
-                    <span className="text-xxs uppercase tracking-wider text-[#F9C04D] block font-semibold">Estimated Final Booking Spend:</span>
-                    <span className="text-[10px] text-neutral-500 font-mono">Covers spend guarantees</span>
-                  </div>
-                  <span className="text-2xl font-bold font-sans text-white">${calculatedOutput.finalSpend}</span>
-                </div>
-
-                <div className="text-[10px] font-mono text-neutral-500 pt-1 text-right">
-                  Roughly averages out to <strong className="text-white">${calculatedOutput.headEstimation} / guest</strong> at current parameters (Required minimum spend applied).
-                </div>
-              </div>
-
+            <div className="p-4 bg-navy-light/25 rounded border border-navy-light/50 text-[11px] font-mono text-slate-300 leading-relaxed">
+              • Minimum spend limits apply to absolute whole venue takeovers on weekends. Please submit plans 30 days prior.
             </div>
           </div>
 
-          {/* Secure Inquiry submission form */}
-          <div className="lg:col-span-6 bg-neutral-900 border border-blue-950/45 p-6 rounded-sm shadow-2xl relative">
-            <h3 className="text-xs uppercase font-sans tracking-widest text-[#F9C04D] border-b border-blue-950/20 pb-2 flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-amber-500" />
-              <span>Inquire About Package Availability</span>
-            </h3>
-
-            {formSubmitted ? (
-              <div className="py-20 text-center space-y-4 animate-fade-in">
-                <CheckCircle className="h-12 w-12 text-lime-500 mx-auto animate-bounce" />
-                <h4 className="text-base uppercase text-white font-semibold">Inquiry Lodged Safely</h4>
-                <p className="text-xs text-neutral-400 max-w-sm mx-auto leading-relaxed">
-                  Thank you, <strong className="text-white">{inquiryName}</strong>. Your private celebration request is received under Reference ID: <strong className="text-amber-400 font-mono">WH-2026-F{Math.floor(Math.random() * 9000 + 1000)}</strong>. 
-                </p>
-                <p className="text-xxs text-neutral-500">Our Events team will phone you within 24 business hours to finalize coordinates.</p>
-                
-                <button
-                  onClick={() => setFormSubmitted(false)}
-                  className="mt-4 px-4 py-2 border border-blue-950/50 hover:border-amber-500 text-xxs text-neutral-300 uppercase tracking-widest"
+          {/* R. Form dossiers with transition block */}
+          <div className="lg:col-span-7 bg-navy-dark border border-navy-light/55 rounded-lg overflow-hidden relative shadow-2xl flex flex-col justify-center">
+            
+            <AnimatePresence mode="wait">
+              {submitted ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="p-10 text-center space-y-6"
                 >
-                  Reset Calculator Form
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleInquirySubmit} className="space-y-4 text-xs pt-4">
-                
-                <div>
-                  <label className="text-neutral-500 text-[9px] uppercase font-mono block mb-1">Your Representative Name</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Jessica Collins"
-                    value={inquiryName}
-                    onChange={(e) => setInquiryName(e.target.value)}
-                    className="w-full text-xs bg-neutral-950 border border-blue-950/60 p-3 rounded-xs text-white focus:outline-none focus:border-amber-500"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-neutral-500 text-[9px] uppercase font-mono block mb-1">Contact Email Address</label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="e.g. jessica@events.com.au"
-                      value={inquiryEmail}
-                      onChange={(e) => setInquiryEmail(e.target.value)}
-                      className="w-full text-xs bg-neutral-950 border border-blue-950/60 p-3 rounded-xs text-white focus:outline-none focus:border-amber-500 animate-fade-in"
-                    />
+                  <div className="w-12 h-12 bg-gold-matte/10 border border-gold-matte/30 rounded-full flex items-center justify-center mx-auto">
+                    <Check className="w-6 h-6 text-gold-matte" />
                   </div>
                   <div>
-                    <label className="text-neutral-500 text-[9px] uppercase font-mono block mb-1">Phone Number</label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="e.g. 0482 040 956"
-                      value={inquiryPhone}
-                      onChange={(e) => setInquiryPhone(e.target.value)}
-                      className="w-full text-xs bg-neutral-950 border border-blue-950/60 p-3 rounded-xs text-white focus:outline-none focus:border-amber-500 font-mono"
-                    />
+                    <span className="font-mono text-xs text-gold-matte tracking-[0.2em] uppercase block mb-1">
+                      Transmission Dispatched
+                    </span>
+                    <h3 className="font-display text-xl font-bold text-slate-100 uppercase tracking-widest">
+                      TRANSCEIVER SYNCHRONIZED
+                    </h3>
                   </div>
-                </div>
-
-                <div>
-                  <label className="text-neutral-500 text-[9px] uppercase font-mono block mb-1">Preferred Function Date</label>
-                  <input
-                    type="date"
-                    required
-                    value={inquiryDate}
-                    onChange={(e) => setInquiryDate(e.target.value)}
-                    min="2026-06-05"
-                    className="w-full text-xs bg-neutral-950 border border-blue-950/60 p-3 rounded-xs text-white focus:outline-none focus:border-amber-500 font-mono"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-neutral-500 text-[9px] uppercase font-mono block mb-1">Special Preferences / Wine wishes</label>
-                  <textarea
-                    rows={2}
-                    value={comments}
-                    onChange={(e) => setComments(e.target.value)}
-                    placeholder="e.g. Corporate retreat, interested in pairing local Albany sea food, requiring speeches microphone..."
-                    className="w-full text-xs bg-neutral-950 border border-blue-950/60 p-3 rounded-xs text-white focus:outline-none focus:border-amber-500 resize-none placeholder-neutral-600"
-                  />
-                </div>
-
-                <div>
+                  <p className="font-serif-sub text-base text-slate-350 italic max-w-md mx-auto leading-relaxed">
+                    "We have logged your function parameters. Our head hospitality guide will reach out to you via email within 24 hours to begin mapping out your bespoke culinary affair."
+                  </p>
                   <button
-                    type="submit"
-                    disabled={submittingInquiry}
-                    className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-neutral-950 text-xs uppercase tracking-widest font-bold rounded-xs shadow-xl transition-all flex items-center justify-center space-x-2"
+                    onClick={() => setSubmitted(false)}
+                    className="px-6 py-2.5 border border-navy-light/85 text-slate-405 hover:text-gold-light hover:border-gold-matte font-mono text-xs tracking-widest uppercase rounded transition-all cursor-pointer"
                   >
-                    {submittingInquiry ? (
-                      <div className="flex items-center space-x-2">
-                        <div className="w-4 h-4 border-2 border-neutral-950 border-t-transparent rounded-full animate-spin" />
-                        <span>Transmitting inquiry logs...</span>
-                      </div>
-                    ) : (
-                      <>
-                        <span>Submit Private Celebration Request</span>
-                        <ArrowRight className="h-4 w-4 animate-pulse" />
-                      </>
-                    )}
+                    Send Another Inquiry
                   </button>
-                </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="p-8 sm:p-10 space-y-6"
+                >
+                  <div className="flex items-center space-x-2">
+                    <Calendar className="w-5 h-5 text-amber-candle" />
+                    <h3 className="font-display text-lg font-bold text-slate-100 uppercase tracking-widest">
+                      INQUIRY DOSSIER
+                    </h3>
+                  </div>
 
-              </form>
-            )}
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <input
+                        type="text"
+                        required
+                        placeholder="Your Name"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full bg-navy-deep border border-navy-light/85 rounded px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-gold-matte font-mono"
+                      />
+                      <input
+                        type="email"
+                        required
+                        placeholder="Your Email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        className="w-full bg-navy-deep border border-navy-light/85 rounded px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-gold-matte font-mono"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">
+                      <input
+                        type="tel"
+                        required
+                        placeholder="Phone Number"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        className="w-full bg-navy-deep border border-navy-light/85 rounded px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-gold-matte"
+                      />
+                      
+                      <select
+                        value={formData.eventType}
+                        onChange={(e) => setFormData({...formData, eventType: e.target.value})}
+                        className="w-full bg-navy-deep border border-navy-light/85 rounded px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-gold-matte"
+                      >
+                        <option>Private Date & Celebration</option>
+                        <option>Banquet & Whole takeover</option>
+                        <option>Masterclass Mixology</option>
+                        <option>Corporate Retreat</option>
+                      </select>
+
+                      <select
+                        value={formData.guests}
+                        onChange={(e) => setFormData({...formData, guests: e.target.value})}
+                        className="w-full bg-navy-deep border border-navy-light/85 rounded px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-gold-matte"
+                      >
+                        <option value="10">8 — 12 guests</option>
+                        <option value="20">15 — 25 guests</option>
+                        <option value="40">30 — 50 guests</option>
+                        <option value="50+">50+ (Sole Takeover)</option>
+                      </select>
+                    </div>
+
+                    <textarea
+                      placeholder="Discuss your aesthetic requirements, milestones, preferred dates, food allergy considerations..."
+                      rows={4}
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      className="w-full bg-navy-deep border border-navy-light/85 rounded px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-gold-matte resize-none font-mono"
+                    />
+
+                    <button
+                      type="submit"
+                      className="w-full py-4 bg-gradient-to-r from-amber-glow/90 to-gold-matte text-navy-deep font-mono font-bold text-xs uppercase tracking-widest rounded hover:brightness-105 transition-all cursor-pointer"
+                    >
+                      Transmit Bespoke Invitation Node
+                    </button>
+
+                  </form>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
           </div>
 
-        </section>
+        </div>
 
       </div>
     </div>

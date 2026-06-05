@@ -6,23 +6,21 @@
 export interface MenuItem {
   id: string;
   name: string;
-  category: 'starters' | 'mains' | 'sides' | 'desserts';
-  price: number;
+  category: 'starter' | 'main' | 'dessert';
+  price: string;
   description: string;
-  tags: ('GF' | 'V' | 'VG' | 'DF' | 'NF' | 'Signature')[];
-  featured: boolean;
-  photo?: string;
+  tags: string[];
 }
 
 export interface DrinkItem {
   id: string;
   name: string;
-  category: 'signature' | 'classics' | 'beer-wine' | 'non-alcoholic';
-  price: number;
+  price: string;
+  profile: string;
+  ingredients: string[];
   description: string;
-  signature: boolean;
-  notes?: string;
-  photo?: string;
+  image: string;
+  highlight?: boolean;
 }
 
 export interface ReviewItem {
@@ -30,23 +28,22 @@ export interface ReviewItem {
   author: string;
   rating: number; // 1-5
   text: string;
+  source: string;
   date: string;
-  source: 'Google' | 'Guest Book';
-  category: 'Atmosphere' | 'Cuisine' | 'Mixology' | 'Service';
 }
 
 export interface GalleryItem {
   id: string;
   url: string;
-  title: string;
-  category: 'venue' | 'food' | 'cocktails';
+  caption: string;
+  category: 'atmosphere' | 'cocktail' | 'dish' | 'detail';
 }
 
-export interface FunctionPackage {
+export interface SpecialItem {
   id: string;
   title: string;
-  minSpend: number;
-  capacity: string;
+  period: string;
   description: string;
-  highlights: string[];
+  highlightText: string;
+  items: string[];
 }

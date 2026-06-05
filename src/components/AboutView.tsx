@@ -1,162 +1,117 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React from 'react';
-import { VENUE_INTERIOR, HERO_BG_BACKUP } from '../data';
-import { Award, ShieldCheck, Leaf, Compass } from 'lucide-react';
+import { HERO_ATMOSPHERE } from '../data';
+import { Flame, Wine, Leaf, Sparkles } from 'lucide-react';
 
 export default function AboutView() {
-  const suppliers = [
-    {
-      name: "Denmark Karri Forest Honey",
-      product: "Dense forest raw honey nectar",
-      location: "Denmark Hills"
-    },
-    {
-      name: "Albany Rock Oyster Co.",
-      product: "Pristine deep-sea rock oysters",
-      location: "Albany Inlet"
-    },
-    {
-      name: "Great Southern Cool-Glass Vineyards",
-      product: "Pinot Noir barrel vintages",
-      location: "Mount Barker slopes"
-    },
-    {
-      name: "Manjimup Truffle Fields",
-      product: "A Grade winter black truffles",
-      location: "Manjimup Valleys"
-    }
-  ];
-
   return (
-    <div id="about-story-root" className="min-h-screen bg-neutral-950 pt-28 pb-24 text-neutral-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-28 bg-navy-deep min-h-screen relative overflow-hidden" id="about-view">
+      {/* Soft background light */}
+      <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-navy-light/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* About Heading Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 animate-fade-in">
-          <span className="text-xs uppercase text-amber-500 font-mono tracking-widest block mb-1">
-            Our Philosophy
+        {/* Header Title */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="font-mono text-xs tracking-[0.25em] text-gold-matte uppercase block mb-3">
+            Born from Forest & Southerly Gales
           </span>
-          <h1 className="text-4xl md:text-6xl text-white font-serif font-light tracking-wide uppercase italic">
-            Our <span className="text-amber-500 not-italic">Story</span>
+          <h1 className="font-display text-3xl sm:text-5xl font-extrabold tracking-widest text-slate-100 uppercase mb-4">
+            OUR STORY & LANDSCAPE
           </h1>
-          <p className="text-xs text-neutral-400 mt-4 leading-relaxed">
-            The narrative of a warm sanctuary built to mirror the majestic landscapes, misty winds, and cool culinary bounty of regional Western Australia.
+          <p className="font-serif-sub text-lg text-slate-350 italic max-w-2xl mx-auto">
+            "A collision of clean Scandinavian design and the dark, wet woods of Denmark, Western Australia. Here is how our secret sanctum came to life."
           </p>
+          <div className="w-16 h-[1.5px] bg-gold-matte mx-auto mt-6" />
         </div>
 
-        {/* Story Section 1: The Hollow Core Vibe */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
-          <div className="lg:col-span-5 space-y-6">
-            <div className="flex items-center space-x-2">
-              <Compass className="h-4 w-4 text-amber-500" />
-              <span className="text-xxs uppercase tracking-widest font-mono text-neutral-400 font-bold">
-                MIST & CANDLELIGHT
-              </span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl font-serif text-white leading-snug italic">
-              Envisioning the <span className="text-amber-500 not-italic">Blue & Gold Sanctuary</span>
+        {/* Story Intro Row */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24 items-center">
+          
+          {/* Narrative text Column */}
+          <div className="lg:col-span-6 space-y-6">
+            <span className="font-mono text-xs text-gold-matte uppercase tracking-widest block">
+              The Genesis
+            </span>
+            <h2 className="font-display text-2xl sm:text-3.5xl font-bold text-slate-100 tracking-wider uppercase leading-snug">
+              AN ESCAPE HIDDEN IN DENMARK, WA
             </h2>
-            <p className="text-xs leading-relaxed text-neutral-400">
-              Denmark, Western Australia is a place of breathtaking dramatic dualities. It is where raw Southern Ocean currents wash over ancient granite headlands, and where massive soaring Karri forest canopies catch the whispering winter mist.
+            <p className="font-serif-sub text-base sm:text-lg text-slate-300 italic leading-relaxed">
+              "Denmark, Western Australia is known for some of the tallest karri forests on Earth, howling Southern Ocean winds, and heavy winter rainfall. To us, it represents the raw soul of the natural world—quiet, majestic, and bone-chillingly cold in the dark months."
             </p>
-            <p className="text-xs leading-relaxed text-neutral-400">
-              Winter’s Hollow was conceived to translate this beautiful outdoor theatre into an indoor shelter. We painted our walls an deep, velvety navy-blue to echo the quiet coastal evening sky, framing them with custom gold detailing that catch the dancing candle flame like glowing charcoal ashes.
-            </p>
-            <p className="text-xs leading-relaxed text-neutral-400">
-              Our venue isn't just about dining; it is a meticulously styled room made to encourage conversation, slow down breathing, and host moments that you remember long after the night fades.
+            <p className="font-sans text-sm text-slate-400 leading-relaxed">
+              We asked ourselves: how can we celebrate this extreme climate rather than hide from it? The answer was Winter’s Hollow. Drawing inspiration from luxury Nordic mountain refuges, we used local fire-blackened wood, soft velvet shadows, and absolute candlelight-driven table arrangements to create an immersive dining room that acts as a spiritual furnace.
             </p>
           </div>
 
-          <div className="lg:col-span-7">
-            <div className="rounded-sm overflow-hidden border border-blue-950/40 shadow-2xl relative pointer-events-none">
-              <img
-                src={VENUE_INTERIOR}
-                alt="Inside Winters Hollow Denmark lounge"
-                className="w-full h-auto object-cover max-h-[440px]"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-neutral-950/15" />
-            </div>
-          </div>
-        </section>
-
-        {/* Story Section 2: Culinary Integrity & Botanical Focus */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
-          <div className="lg:col-span-6 lg:order-2 space-y-6">
-            <div className="flex items-center space-x-2">
-              <Leaf className="h-4 w-4 text-amber-500" />
-              <span className="text-xxs uppercase tracking-widest font-mono text-neutral-400 font-bold">
-                NATIVE INTEGRITY
-              </span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl font-serif text-white leading-snug italic">
-              Respecting the Produce of the <span className="text-amber-500 not-italic">Great Southern</span>
-            </h2>
-            <p className="text-xs leading-relaxed text-neutral-400">
-              The regional identity of our food and beverage programs is paramount. We believe Western Australia produces some of the most complex, pristine fruits, cattle grazing lands, and deep-sea aquatic treasures in the world.
-            </p>
-            <p className="text-xs leading-relaxed text-neutral-400">
-              Our Head Chef maps our recipes directly to the local seasons. Starters are kept vibrant and clean—highlighting oysters and wild sea parsley—while our coal-fired mains boast the earthy depth of red gum charcoal embers, forest pine vapor, and native mountain pepperberries.
-            </p>
-            <div className="p-4 rounded-sm bg-neutral-900 border border-blue-950/30 flex items-start space-x-3 text-xs text-neutral-400">
-              <Award className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
-              <div>
-                <strong className="text-white block font-sans mb-1 uppercase text-xxs tracking-wider">Zero-compromise Ethos</strong>
-                We never use imported synthetics or mass-produced ingredients inside our kitchen or bar. Every cordial, reduction syrup, and smoked cedar block is crafted by hand in-house.
-              </div>
-            </div>
+          {/* Visual banner column */}
+          <div className="lg:col-span-6 h-96 rounded-lg overflow-hidden shadow-2xl relative group">
+            <img
+              src={HERO_ATMOSPHERE}
+              alt="Founders Interior Vision"
+              className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-navy-deep/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-transparent to-transparent" />
           </div>
 
-          <div className="lg:col-span-6 lg:order-1">
-            <div className="rounded-sm overflow-hidden border border-blue-950/40 shadow-2xl relative pointer-events-none">
-              <img
-                src={HERO_BG_BACKUP}
-                alt="Moody spirit bar back detailing"
-                className="w-full h-auto object-cover max-h-[440px]"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-neutral-950/20" />
-            </div>
-          </div>
-        </section>
+        </div>
 
-        {/* Partnerships & Collaborator Cards to Build Trust */}
-        <section id="story-suppliers-showcase" className="border-t border-blue-950/40 pt-16">
-          <div className="text-center max-w-xl mx-auto mb-12">
-            <h3 className="text-lg uppercase text-white tracking-widest font-sans">
-              Our Local Community Partnerships
+        {/* Three Core Pillars Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+          
+          {/* Pillar 1 */}
+          <div className="bg-navy-dark border border-navy-light/40 p-8 rounded shadow-lg space-y-4">
+            <div className="w-12 h-12 bg-amber-candle/10 border border-amber-candle/30 rounded flex items-center justify-center">
+              <Flame className="w-6 h-6 text-amber-candle animate-pulse" />
+            </div>
+            <h3 className="font-display text-lg font-bold text-slate-100 uppercase tracking-widest">
+              WOOD & CHARCOAL COALS
             </h3>
-            <p className="text-xxs text-neutral-500 leading-relaxed mt-2 uppercase tracking-wide">
-              We collaborate proudly with regional farmers, sustainable fisheries, and cool climate vigneron stewards.
+            <p className="font-sans text-xs text-slate-400 leading-relaxed">
+              We exclusively burn regional Karri and Jarrah wood branches. This releases dense, clean, mineral wood smoke which infuses deep oils into our locally raised red meats and root crops under charcoal embers.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {suppliers.map((sup, index) => (
-              <div
-                key={index}
-                className="bg-neutral-900/40 border border-blue-950/35 p-5 rounded-sm hover:border-amber-500/10 transition-colors"
-              >
-                <div className="w-8 h-8 rounded-full bg-blue-950/15 border border-blue-900/35 flex items-center justify-center text-amber-400 font-mono text-[10px] mb-4">
-                  0{index + 1}
-                </div>
-                <h4 className="text-xs uppercase font-sans tracking-wide text-white font-semibold">
-                  {sup.name}
-                </h4>
-                <p className="text-xxs text-neutral-400 mt-1.5">
-                  {sup.product}
-                </p>
-                <span className="text-[10px] font-mono text-[#F9C04D]/80 block mt-3 font-semibold uppercase">
-                  📍 {sup.location}, WA
-                </span>
-              </div>
-            ))}
+          {/* Pillar 2 */}
+          <div className="bg-navy-dark border border-navy-light/40 p-8 rounded shadow-lg space-y-4">
+            <div className="w-12 h-12 bg-gold-matte/10 border border-gold-matte/30 rounded flex items-center justify-center">
+              <Wine className="w-6 h-6 text-gold-matte" />
+            </div>
+            <h3 className="font-display text-lg font-bold text-slate-100 uppercase tracking-widest">
+              SOUTHERN CLIMATIC WINES
+            </h3>
+            <p className="font-sans text-xs text-slate-400 leading-relaxed">
+              Denmark WA sits on pristine cool-climate terroir. We work directly with boutique local winemakers to obtain intense, slatey Rieslings, ocean-influenced Pinot Noirs, and spicy Syrahs that stand tall alongside heavy fire roasts.
+            </p>
           </div>
-        </section>
+
+          {/* Pillar 3 */}
+          <div className="bg-navy-dark border border-navy-light/40 p-8 rounded shadow-lg space-y-4">
+            <div className="w-12 h-12 bg-navy-light/50 border border-navy-light/80 rounded flex items-center justify-center">
+              <Leaf className="w-6 h-6 text-slate-300" />
+            </div>
+            <h3 className="font-display text-lg font-bold text-slate-100 uppercase tracking-widest">
+              NATIVE COASTAL HARVESTS
+            </h3>
+            <p className="font-sans text-xs text-slate-400 leading-relaxed">
+              Every morning we harvest ocean rock samphire, wild beach saltbush, local honey from the trees, and fresh sea herbs. This ensures our guests sample the actual botanical biodiversity of Denmark's forest floor.
+            </p>
+          </div>
+
+        </div>
+
+        {/* Winter's Hollow Manifesto Card */}
+        <div className="bg-navy-dark border border-navy-light/40 rounded-lg p-10 md:p-16 text-center max-w-4xl mx-auto relative overflow-hidden">
+          <div className="absolute -bottom-10 right-10 w-40 h-40 bg-amber-candle/10 rounded-full blur-3xl" />
+          <Sparkles className="w-8 h-8 text-amber-candle/60 mx-auto mb-6 animate-pulse" />
+          <p className="font-serif-sub text-xl sm:text-2xl text-slate-200 italic leading-relaxed max-w-2xl mx-auto">
+            "We believe that dining is not just caloric ingestion; it is a primal gathering. It is about the warmth of candlelight falling across dry crystal glasses, the crackle of wood sparks, and long intimate conversations."
+          </p>
+          <div className="mt-6 font-mono text-xs text-gold-matte tracking-widest uppercase">
+            — THE WINTER'S HOLLOW MANIFESTO
+          </div>
+        </div>
 
       </div>
     </div>
