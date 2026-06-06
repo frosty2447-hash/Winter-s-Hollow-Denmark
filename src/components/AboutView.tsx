@@ -1,6 +1,6 @@
 import React from 'react';
 import { HERO_ATMOSPHERE } from '../data';
-import { Flame, Wine, Leaf, Sparkles } from 'lucide-react';
+import { Wine, Leaf, Sparkles } from 'lucide-react';
 
 export default function AboutView() {
   return (
@@ -19,7 +19,7 @@ export default function AboutView() {
             OUR STORY & LANDSCAPE
           </h1>
           <p className="font-serif-sub text-lg text-slate-350 italic max-w-2xl mx-auto">
-            "A collision of clean Scandinavian design and the dark, wet woods of Denmark, Western Australia. Here is how our secret sanctum came to life."
+            "A collision of clean contemporary design and the dark, wet forest landscape of Denmark, Western Australia. Here is how our secret sanctum came to life."
           </p>
           <div className="w-16 h-[1.5px] bg-gold-matte mx-auto mt-6" />
         </div>
@@ -39,7 +39,7 @@ export default function AboutView() {
               "Denmark, Western Australia is known for some of the tallest karri forests on Earth, howling Southern Ocean winds, and heavy winter rainfall. To us, it represents the raw soul of the natural world—quiet, majestic, and bone-chillingly cold in the dark months."
             </p>
             <p className="font-sans text-sm text-slate-400 leading-relaxed">
-              We asked ourselves: how can we celebrate this extreme climate rather than hide from it? The answer was Winter’s Hollow. Drawing inspiration from luxury Nordic mountain refuges, we used local fire-blackened wood, soft velvet shadows, and absolute candlelight-driven table arrangements to create an immersive dining room that acts as a spiritual furnace.
+              We asked ourselves: how can we celebrate this extreme climate rather than hide from it? The answer was Winter’s Hollow. Drawing inspiration from luxury mountain refuges, we used local matte-finished dark timbers, soft velvet shadows, and elegant candlelight-driven table arrangements to create an immersive dining room that acts as a comforting sanctuary.
             </p>
           </div>
 
@@ -63,13 +63,13 @@ export default function AboutView() {
           {/* Pillar 1 */}
           <div className="bg-navy-dark border border-navy-light/40 p-8 rounded shadow-lg space-y-4">
             <div className="w-12 h-12 bg-amber-candle/10 border border-amber-candle/30 rounded flex items-center justify-center">
-              <Flame className="w-6 h-6 text-amber-candle animate-pulse" />
+              <Sparkles className="w-6 h-6 text-amber-candle animate-pulse" />
             </div>
             <h3 className="font-display text-lg font-bold text-slate-100 uppercase tracking-widest">
-              WOOD & CHARCOAL COALS
+              PREMIUM CHARCOAL COALS
             </h3>
             <p className="font-sans text-xs text-slate-400 leading-relaxed">
-              We exclusively burn regional Karri and Jarrah wood branches. This releases dense, clean, mineral wood smoke which infuses deep oils into our locally raised red meats and root crops under charcoal embers.
+              We exclusively roast over regional Karri and Jarrah wood branches. This releases subtle, clean, mineral wood warmth which highlights our locally raised red meats and root crops under charcoal embers.
             </p>
           </div>
 
@@ -82,7 +82,7 @@ export default function AboutView() {
               SOUTHERN CLIMATIC WINES
             </h3>
             <p className="font-sans text-xs text-slate-400 leading-relaxed">
-              Denmark WA sits on pristine cool-climate terroir. We work directly with boutique local winemakers to obtain intense, slatey Rieslings, ocean-influenced Pinot Noirs, and spicy Syrahs that stand tall alongside heavy fire roasts.
+              Denmark WA sits on pristine cool-climate terroir. We work directly with boutique local winemakers to obtain intense, slatey Rieslings, ocean-influenced Pinot Noirs, and spicy Syrahs that stand tall alongside rich winter roasts.
             </p>
           </div>
 
@@ -106,7 +106,7 @@ export default function AboutView() {
           <div className="absolute -bottom-10 right-10 w-40 h-40 bg-amber-candle/10 rounded-full blur-3xl" />
           <Sparkles className="w-8 h-8 text-amber-candle/60 mx-auto mb-6 animate-pulse" />
           <p className="font-serif-sub text-xl sm:text-2xl text-slate-200 italic leading-relaxed max-w-2xl mx-auto">
-            "We believe that dining is not just caloric ingestion; it is a primal gathering. It is about the warmth of candlelight falling across dry crystal glasses, the crackle of wood sparks, and long intimate conversations."
+            "We believe that dining is not just caloric ingestion; it is a primal gathering. It is about the warmth of candlelight falling across dry crystal glasses, the soft glow of the amber candles, and long intimate conversations."
           </p>
           <div className="mt-6 font-mono text-xs text-gold-matte tracking-widest uppercase">
             — THE WINTER'S HOLLOW MANIFESTO

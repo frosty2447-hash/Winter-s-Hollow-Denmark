@@ -166,7 +166,7 @@ export const FOOD_MENU: MenuItem[] = [
   },
   {
     id: "f20",
-    name: "Flame Trees Chocolate Fudge Sundae",
+    name: "Classic Chocolate Fudge Sundae",
     price: "$22",
     description: "W Vanilla Ice Cream, Chantilly Cream, maraschino cherry & Baileys, Chambord, Frangelico or Sailor Jerrys",
     tags: ["GF", "Alcoholic", "Indulgent"],
@@ -187,7 +187,7 @@ export const DRINKS_MENU: DrinkItem[] = [
       "Aromatic bitters blend",
       "Cedar oil sphere"
     ],
-    description: "Our legendary smoke-veiled signature cocktail. Arrives at the table under a glass cloche filled with real burning Jarrah forest wood incense. Heavy and unforgettable.",
+    description: "Our legendary smoke-veiled signature cocktail. Arrives at the table under a glass cloche filled with aromatic wood smoke essence. Heavy and unforgettable.",
     image: SIGNATURE_COCKTAIL_OLD,
     highlight: true
   },
@@ -210,17 +210,17 @@ export const DRINKS_MENU: DrinkItem[] = [
   },
   {
     id: "c2",
-    name: "Nordic Winter Negroni",
+    name: "Winter Solstice Negroni",
     price: "$23",
     profile: "Bitter, Complex, Herbaceous",
     ingredients: [
-      "Nordic Aquavit",
+      "Contemporary Aquavit",
       "House-steeped plum Campari",
       "Spiced sweet vermouth",
       "Star anise cloud",
       "Toasted orange peel"
     ],
-    description: "A bold Scandinavian twist on a timeless standard, exchanging gin for caraway-driven Aquavit, with deep spiced undertones that warm from within.",
+    description: "A bold, modern twist on a timeless standard, exchanging gin for caraway-driven Aquavit, with deep spiced undertones that warm from within.",
     image: "https://images.unsplash.com/photo-1541532713592-79a0317b6b77?q=80&w=1000"
   },
   {
@@ -257,15 +257,15 @@ export const DRINKS_MENU: DrinkItem[] = [
     id: "c5",
     name: "The Solstice Sour",
     price: "$23",
-    profile: "Fiery, Sparkling, Fruity",
+    profile: "Vibrant, Sparkling, Fruity",
     ingredients: [
-      "Fire-charred local pear nectar",
+      "Roasted local pear nectar",
       "Rye vodka",
       "Fresh pressed lemon juice",
       "Organic ginger syrup",
       "Cinnamon bark sugar rim"
     ],
-    description: "A complex seasonal sour with a warm, fiery kick of fresh ginger and a touch of sweet smoke from oven-roasted organic pears.",
+    description: "A complex seasonal sour with a warm, lively kick of fresh ginger and a touch of sweet smoke from slow-roasted organic pears.",
     image: GOURMET_DISH_OLD
   }
 ];
@@ -283,7 +283,7 @@ export const REVIEWS_DATA: ReviewItem[] = [
     id: 'r2',
     author: 'Marc & Juliet',
     rating: 5,
-    text: "Simply the best date night location in Western Australia's South West. Moody blues, matte black details, and incredible Nordic-inspired local food. Make sure to reserve weeks in advance. The atmosphere alone makes it worth the trip.",
+    text: "Simply the best date night location in Western Australia's South West. Moody blues, matte black details, and incredible contemporary-inspired local food. Make sure to reserve weeks in advance. The atmosphere alone makes it worth the trip.",
     source: "Google Review",
     date: "April 2026"
   },
@@ -291,7 +291,7 @@ export const REVIEWS_DATA: ReviewItem[] = [
     id: 'r3',
     author: 'Tobias Lindqvist',
     rating: 5,
-    text: "As a Swede visiting WA, I was blown away by how they captured authentic Swedish luxury and blended it with raw West Australian forest elements. Truly magnificent food, local wines, and smoky spirits.",
+    text: "As a traveler visiting WA, I was blown away by how they captured authentic forest luxury and blended it with raw West Australian landscape elements. Truly magnificent food, local wines, and smoky spirits.",
     source: "Connoisseur Magazine",
     date: "June 2026"
   }
@@ -307,19 +307,19 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: "g2",
     url: SIGNATURE_COCKTAIL_OLD,
-    caption: "The Hollow's Breath—our signature peated single malt masterpiece, smoked at the table in local karri timber dust.",
+    caption: "The Hollow's Breath—our signature peated single malt masterpiece, presented with slow-infused local karri wood aroma.",
     category: "cocktail"
   },
   {
     id: "g3",
     url: GOURMET_DISH_OLD,
-    caption: "Fine dining with a sense of place: charred local ingredients plated on rich, dark Nordic ceramic slate.",
+    caption: "Fine dining with a sense of place: charred local ingredients plated on rich, dark ceramic slate.",
     category: "dish"
   },
   {
     id: "g4",
     url: COZY_HOLLOW,
-    caption: "Our intimate fireside corner—heavy blue knit blankets, deep candle shadow, and custom timber booths.",
+    caption: "Our intimate cozy corner—heavy blue knit blankets, deep candle shadow, and custom timber booths.",
     category: "atmosphere"
   },
   {
@@ -341,11 +341,11 @@ export const SPECIALS_DATA: SpecialItem[] = [
     id: "s1",
     title: "The Winter Solstice Feast",
     period: "June 19 - June 22",
-    description: "An annual intimate multi-course dining ritual celebrating the longest nights of the year. The entire restaurant will be lit exclusively by 100 organic beeswax candles, with a special open-hearth fireplace menu.",
+    description: "An annual intimate multi-course dining ritual celebrating the longest nights of the year. The entire restaurant will be lit exclusively by 100 organic beeswax candles, with a special warm winter menu.",
     highlightText: "Extremely Limited Seating • Bookings open June 5th",
     items: [
-      "Jarrah-charcoal venison broth with forest juniper",
-      "Wood-roasted Denmark marron in smoked dahl butter",
+      "Aromatic venison broth with forest juniper",
+      "Slow-roasted Denmark marron in smoked dahl butter",
       "Triggs farm suckling pig, ash-crusted crackling, warm plum jus",
       "Roasted pine needles and elderflower reduction dessert"
     ]

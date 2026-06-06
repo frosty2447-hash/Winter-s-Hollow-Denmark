@@ -93,7 +93,7 @@ export default function MenuView() {
             THE MENU
           </h1>
           <p className="font-serif italic text-lg sm:text-xl text-slate-300">
-            "A dialogue between raw fire, local premium farming, and the surrounding Southern ocean of Denmark, WA."
+            "A dialogue between contemporary craft, local premium farming, and the surrounding Southern ocean of Denmark, WA."
           </p>
           <div className="w-16 h-[1.5px] bg-gold-matte mx-auto mt-6" />
         </div>
@@ -304,7 +304,7 @@ export default function MenuView() {
               <div className="text-[11px] font-mono text-slate-400 space-y-2 leading-relaxed uppercase tracking-wider">
                 <p className="font-bold text-slate-250">IMPORTANT ALLERGY INFORMATION:</p>
                 <p>
-                  While our culinary system ensures direct sanitation protocols, meals are prepared in a unified wood-fired kitchen environment handling nuts, shellfish, and wheats. Always state preferences to hosts on arrival.
+                  While our culinary system ensures direct sanitation protocols, meals are prepared in a unified professional kitchen environment handling nuts, shellfish, and wheats. Always state preferences to hosts on arrival.
                 </p>
               </div>
             </div>

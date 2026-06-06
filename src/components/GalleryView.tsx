@@ -113,7 +113,7 @@ export default function GalleryView() {
           <Sparkles className="h-6 w-6 text-gold-matte/50 mx-auto mb-3 animate-pulse" />
           <h4 className="font-mono text-xs uppercase tracking-wider text-slate-200">AUTHENTIC CAPTURES Only</h4>
           <p className="font-sans text-[11px] text-slate-400 leading-relaxed mt-2 uppercase">
-            All photography was styled and shot inside our building on Holling Road under exact nightfall candle conditions.
+            All photography was styled and shot inside our building on Strickland Street under exact nightfall candle conditions.
           </p>
         </div>
 

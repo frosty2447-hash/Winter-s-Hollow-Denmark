@@ -33,7 +33,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               WINTER'S HOLLOW
             </h3>
             <p className="font-serif-sub text-base text-slate-400 leading-relaxed italic">
-              "A hidden winter sanctuary where forest fire meets ocean ice. Designed for sensory dining, craft mixology, and memorable date nights."
+              "A hidden winter sanctuary where forest meets ocean twilight. Designed for sensory dining, craft mixology, and memorable date nights."
             </p>
             <div className="flex space-x-4">
               <a
@@ -134,7 +134,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               </li>
               <li className="flex justify-between text-slate-500 pb-2 italic">
                 <span>Monday & Tuesday</span>
-                <span className="font-mono text-xs text-slate-650">Resting the flames</span>
+                <span className="font-mono text-xs text-slate-650">Closed for preparation</span>
               </li>
             </ul>
           </div>
@@ -178,11 +178,11 @@ export default function Footer({ onNavigate }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-8 border-t border-b border-navy-light/35 text-xs font-mono text-slate-400 mb-8">
           <div className="flex items-center space-x-3">
             <MapPin className="w-4 h-4 text-gold-matte flex-shrink-0" />
-            <span>35 Holling Road, Denmark, Western Australia 6333</span>
+            <span>3/27 Strickland Street, Denmark, Western Australia 6333</span>
           </div>
           <div className="flex items-center space-x-3">
             <Phone className="w-4 h-4 text-gold-matte flex-shrink-0" />
-            <span>+61 (08) 9848 1022</span>
+            <span>0482 040 956</span>
           </div>
           <div className="flex items-center space-x-3">
             <Mail className="w-4 h-4 text-gold-matte flex-shrink-0" />

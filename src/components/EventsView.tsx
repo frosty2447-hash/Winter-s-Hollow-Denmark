@@ -17,9 +17,9 @@ export default function EventsView() {
 
   const packages = [
     {
-      title: "Intimate Fireside Takeovers",
+      title: "Intimate Lounge Takeovers",
       capacity: "10 — 20 guests",
-      desc: "Complete privacy in our high-end cozy corners. Enjoy dedicated fireside cocktail craft and customized sharing wood-fired feast dishes perfectly timed.",
+      desc: "Complete privacy in our high-end cozy corners. Enjoy dedicated curated cocktail craft and customized sharing dining courses perfectly timed.",
       highlight: "Perfect for milestones & luxury date circles"
     },
     {
@@ -146,11 +146,11 @@ export default function EventsView() {
                       Transmission Dispatched
                     </span>
                     <h3 className="font-display text-xl font-bold text-slate-100 uppercase tracking-widest">
-                      TRANSCEIVER SYNCHRONIZED
+                      INQUIRY SUBMITTED
                     </h3>
                   </div>
                   <p className="font-serif-sub text-base text-slate-350 italic max-w-md mx-auto leading-relaxed">
-                    "We have logged your function parameters. Our head hospitality guide will reach out to you via email within 24 hours to begin mapping out your bespoke culinary affair."
+                    "We have received your function details. Our host will reach out to you via email within 24 hours to begin mapping out your bespoke culinary event."
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -240,7 +240,7 @@ export default function EventsView() {
                       type="submit"
                       className="w-full py-4 bg-gradient-to-r from-amber-glow/90 to-gold-matte text-navy-deep font-mono font-bold text-xs uppercase tracking-widest rounded hover:brightness-105 transition-all cursor-pointer"
                     >
-                      Transmit Bespoke Invitation Node
+                      Submit Bespoke Inquiry
                     </button>
 
                   </form>

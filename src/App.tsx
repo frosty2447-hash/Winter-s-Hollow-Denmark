@@ -17,6 +17,10 @@ import ContactView from './components/ContactView';
 export default function App() {
   const [activeView, setActiveView] = useState<string>('home');
 
+  React.useEffect(() => {
+    document.title = "Winter's Hollow Denmark | Food • Wine • Cocktails";
+  }, []);
+
   const renderCurrentView = () => {
     switch (activeView) {
       case 'home':

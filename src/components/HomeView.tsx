@@ -16,9 +16,9 @@ interface HomeViewProps {
 export default function HomeView({ onNavigate }: HomeViewProps) {
   const cornerstones = [
     {
-      title: "The Fire Pit Kitchen",
-      subtitle: "AUSTRAL-NORDIC DINING",
-      desc: "Slow combustion, raw flames, local Karri wood. Our custom embers pit handles hand-harvested Great Southern meats, salt-baked root cellars, and coastal brine.",
+      title: "The Hearth Kitchen",
+      subtitle: "SEASONAL WINTER DINING",
+      desc: "Artisanal preparation, slow-cooked over premium local Karri wood. Our kitchen crafted menu handles hand-harvested Great Southern meats, salt-baked root cellars, and coastal brine.",
       image: GOURMET_DISH_OLD,
       cta: "The Culinary Menu",
       target: "menu"
@@ -89,7 +89,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
             transition={{ duration: 1, delay: 0.2 }}
             className="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-navy-light/20 backdrop-blur-md rounded-full border border-white/10 mb-8"
           >
-            <Flame className="w-3.5 h-3.5 text-amber-candle animate-pulse" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-candle animate-pulse" />
             <span className="font-mono text-[9px] tracking-[0.25em] text-slate-300 uppercase">
               A Hidden Sanctuary • Denmark WA
             </span>
@@ -104,8 +104,8 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           >
             WHERE THE WILD <br />
             <span className="text-[#C5A059]">COLD</span> DRIFTS, <br />
-            THE HOLLOW BURNS <br />
-            WARM.
+            THE SANCTUARY <br />
+            GLOWS.
           </motion.h1>
 
           {/* Slogan */}
@@ -115,7 +115,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
             transition={{ duration: 1.2, delay: 0.6 }}
             className="font-serif-sub text-base sm:text-lg text-slate-300 italic max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            “Cold outside. Alive inside. Slip away from the howling winds into Denmark’s premier candlelit culinary escape.”
+            “A curated candlelit refuge. Slip away from the howling winds into Denmark’s premier winter culinary escape.”
           </motion.p>
 
           {/* Buttons Navigation CTAs */}
@@ -159,19 +159,19 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                 The Atmospheric Experience
               </span>
               <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-widest text-slate-100 uppercase leading-snug">
-                WE SELL ATMOSPHERE,<br />WHISKEY & RAW WOOD FIRE.
+                WE SELL ATMOSPHERE,<br />FINE SPIRITS & WINTER HEARTH.
               </h2>
               <p className="font-serif-sub text-lg sm:text-xl text-slate-350 italic leading-relaxed">
-                "Winter’s Hollow was born from the ancient towering karri trees and cold southerly gusts of Denmark, WA. We designed this chamber as a physical refuge—heavy thick timbers, velvet curtained shadows, amber candles, and slow-melting smoke that captures the intense romance of the dark months."
+                "Winter’s Hollow was born from the ancient towering karri trees and cold southerly gusts of Denmark, WA. We designed this chamber as a physical refuge—heavy thick timbers, velvet curtained shadows, amber candlelight, and winter warmth that captures the intense romance of the dark months."
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 sm:items-center text-slate-400 font-mono text-xs">
                 <div className="flex items-center space-x-2">
                   <MapPin className="w-4 h-4 text-gold-matte flex-shrink-0" />
-                  <span>35 Holling Road, Denmark WA (WA Great Southern Coast)</span>
+                  <span>3/27 Strickland Street, Denmark WA 6333</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Flame className="w-4 h-4 text-amber-candle" />
+                  <Sparkles className="w-4 h-4 text-amber-candle animate-pulse" />
                   <span>Limited: 42 Seats Nightly</span>
                 </div>
               </div>
@@ -195,7 +195,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                     <span>Real-time Secure Confirmation</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <Flame className="w-4 h-4 text-amber-candle" />
+                    <Sparkles className="w-4 h-4 text-amber-candle" />
                     <span>Seating style preferences welcome</span>
                   </li>
                 </ul>
@@ -286,7 +286,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
             WE DARE TO DO DINING SLOWLY.
           </h2>
           <p className="font-serif-sub text-base sm:text-lg text-slate-300 italic leading-relaxed max-w-2xl mx-auto mb-8">
-            “No rushed sittings. No generic noise. We dim the house lights, ignite the jarrah timbers, and prepare hand-smoked culinary stories. Denmark WA has never felt so intimate.”
+            “No rushed sittings. No generic noise. We dim the house lights, light the beautiful beeswax candles, and prepare beautifully crafted winter culinary stories. Denmark WA has never felt so intimate.”
           </p>
           <div className="inline-flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-400">
             <span className="bg-navy-light/40 px-3 py-1.5 border border-navy-light/60 rounded">42 Seats Only</span>

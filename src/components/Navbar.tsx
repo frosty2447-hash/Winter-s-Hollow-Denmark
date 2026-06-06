@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Flame } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface NavbarProps {
@@ -59,7 +59,7 @@ export default function Navbar({ currentView, onNavigate }: NavbarProps) {
             className="flex items-center space-x-2 text-left focus:outline-none group cursor-pointer bg-transparent border-0 p-0"
           >
             <div className="relative">
-              <Flame className="w-6 h-6 text-amber-candle animate-pulse group-hover:text-amber-glow transition-colors" />
+              <Sparkles className="w-6 h-6 text-amber-candle animate-pulse group-hover:text-amber-glow transition-colors" />
               <div className="absolute inset-0 bg-amber-candle/30 rounded-full blur-md opacity-70 group-hover:opacity-100 transition-opacity" />
             </div>
             <div className="flex flex-col select-none">
@@ -161,7 +161,7 @@ export default function Navbar({ currentView, onNavigate }: NavbarProps) {
               WINTER'S HOLLOW DENMARK
             </span>
             <span className="text-[9px] text-[#C5A059] font-mono">
-              35 Holling Road, Denmark • WA
+              3/27 Strickland Street, Denmark • WA
             </span>
           </div>
         </div>

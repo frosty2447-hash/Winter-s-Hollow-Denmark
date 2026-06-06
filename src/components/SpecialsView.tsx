@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { SPECIALS_DATA } from '../data';
-import { Flame, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export default function SpecialsView() {
   return (
@@ -47,7 +47,7 @@ export default function SpecialsView() {
                 <div className="flex-1 space-y-6">
                   <div className="space-y-2">
                     <span className="font-mono text-xs text-amber-candle uppercase tracking-[0.2em] font-semibold flex items-center space-x-1.5">
-                      <Flame className="w-4 h-4 text-amber-candle animate-pulse" />
+                      <Sparkles className="w-4 h-4 text-amber-candle animate-pulse" />
                       <span>{special.period}</span>
                     </span>
                     <h3 className="font-display text-2xl sm:text-3.5xl font-extrabold text-slate-100 tracking-wider uppercase leading-snug">

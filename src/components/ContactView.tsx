@@ -8,7 +8,7 @@ export default function ContactView() {
   const faqs = [
     {
       q: "Do you cater for dietary requirements?",
-      a: "Yes, our wood-fired hearth kitchen provides comprehensive Gluten-Free, Vegetarian, and Vegan options (sign-posted as GF, V, VE on our physical cards). Please notify your dedicated host of any severe clinical allergies upon arrival."
+      a: "Yes, our hearth kitchen provides comprehensive Gluten-Free, Vegetarian, and Vegan options (sign-posted as GF, V, VE on our physical cards). Please notify your dedicated host of any severe clinical allergies upon arrival."
     },
     {
       q: "Can I host private events or takeover functions?",
@@ -64,7 +64,7 @@ export default function ContactView() {
                   </div>
                   <div className="space-y-1">
                     <span className="text-slate-400 block text-[9px] tracking-widest uppercase font-bold">Physical Location</span>
-                    <span className="text-slate-100 text-sm font-serif-sub block italic">35 Holling Road, Denmark,</span>
+                    <span className="text-slate-100 text-sm font-serif-sub block italic">3/27 Strickland Street, Denmark,</span>
                     <span className="text-slate-100 text-sm font-serif-sub block italic">Western Australia, 6333</span>
                   </div>
                 </div>
@@ -76,8 +76,8 @@ export default function ContactView() {
                   </div>
                   <div className="space-y-1">
                     <span className="text-slate-400 block text-[9px] tracking-widest uppercase font-bold">Phone Channels</span>
-                    <a href="tel:+610898481022" className="text-slate-100 hover:text-[#C5A059] transition-colors text-sm font-serif-sub block italic font-medium">
-                      +61 (08) 9848 1022
+                    <a href="tel:0482040956" className="text-slate-100 hover:text-[#C5A059] transition-colors text-sm font-serif-sub block italic font-medium">
+                      0482 040 956
                     </a>
                     <span className="text-[9px] text-slate-500 block">Wednesday — Sunday (from 3 PM)</span>
                   </div>
@@ -106,7 +106,7 @@ export default function ContactView() {
               <Car className="h-5 w-5 text-[#C5A059] shrink-0 mt-0.5" />
               <div className="text-slate-400 uppercase tracking-widest font-medium">
                 <span className="text-slate-200 font-bold block mb-1">PARKING ADVICE:</span>
-                Private underground bays are available for guests behind the sanctuary grove. Free street parking along Holling Road.
+                Free street parking along Strickland Street and close surrounding public bays.
               </div>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function ContactView() {
 
             {/* Corner styling accents */}
             <div className="absolute top-2 left-2 font-mono text-[9px] text-[#C5A059]/40">NW/6333</div>
-            <div className="absolute top-2 right-2 font-mono text-[9px] text-[#C5A059]/40">HOLLING RD</div>
+            <div className="absolute top-2 right-2 font-mono text-[9px] text-[#C5A059]/40">STRICKLAND ST</div>
 
             {/* Glowing Map Pin beacon in the center */}
             <div className="my-auto flex flex-col items-center justify-center text-center space-y-3 relative z-10">
@@ -138,7 +138,7 @@ export default function ContactView() {
                   WINTER'S HOLLOW
                 </span>
                 <span className="font-mono text-[9px] text-slate-450 uppercase tracking-widest block">
-                  35 Holling Road, Denmark WA
+                  3/27 Strickland Street, Denmark WA
                 </span>
               </div>
             </div>
@@ -151,7 +151,7 @@ export default function ContactView() {
               </div>
               <div>
                 <a
-                  href="https://maps.google.com/?q=35+Holling+Road+Denmark+WA+6333"
+                  href="https://maps.google.com/?q=3/27+Strickland+Street+Denmark+WA+6333"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center space-x-1.5 text-[9px] font-mono text-[#C5A059] hover:text-[#fff9e6] font-bold uppercase tracking-[0.2em] transition-colors"
